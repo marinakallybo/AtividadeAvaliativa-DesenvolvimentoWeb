@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Volt Shop</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topo">
+    <div class="container topo__in">
+        <h1 class="logo">Volt<span>Shop</span></h1>
+      <form class="busca" role="search" onsubmit="return false">
+        <label for="busca" class="sr-only">Buscar produto</label>
+        <input id="busca" type="search" placeholder="Buscar produto…">
+      </form>
+      <button id="btn-tema" class="btn btn-sec" type="button" aria-label="Alternar tema">Escuro</button>
+    </div>
+  </header>
+
+  <main class="container layout">
+    <section aria-labelledby="t-cat">
+      <div class="barra">
+        <h2 id="t-cat">Produtos <small id="contagem"></small></h2>
+      </div>
+      <div id="grade" class="grade"></div>
+    </section>
+
+    <main class="container">
+    
+        <div class="layout">
+          <!-- CARDÁPIO (READ + botões de CREATE / UPDATE / DELETE) -->
+          <section id="cardapio" aria-labelledby="t-cardapio">
+            <div class="secao-topo">
+              <h2 id="t-cardapio">Produtos</h2>
+              <button id="novo" class="btn type="button">+ Novo produto</button>
+            </div>
+            <div id="lista" class="grade"></div>
+          </section>
+    
+          <!-- CARRINHO -->
+          <aside id="carrinho" class="carrinho" aria-labelledby="t-carrinho">
+            <h2 id="t-carrinho">Seu pedido</h2>
+            <ul id="itens" class="itens"></ul>
+    
+            <fieldset>
+              <legend>Tipo de entrega</legend>
+              <label><input type="radio" name="entrega" value="retirada" checked> Retirada / local</label>
+              <label><input type="radio" name="entrega" value="delivery"> Delivery (+ R$ 9,50)</label>
+            </fieldset>
+    
+            <label for="cli-nome">Nome do cliente</label>
+            <input id="cli-nome" type="text" autocomplete="name">
+            <div id="bloco-end" hidden>
+              <label for="cli-end">Endereço de entrega</label>
+              <input id="cli-end" type="text" autocomplete="street-address">
+            </div>
+    
+            <dl class="resumo">
+              <div><dt>Subtotal</dt><dd id="r-sub">R$ 0,00</dd></div>
+              <div><dt>Taxa de entrega</dt><dd id="r-taxa">R$ 0,00</dd></div>
+              <div class="total"><dt>Total</dt><dd id="r-total">R$ 0,00</dd></div>
+            </dl>
+            <div class="acoes">
+              <button id="limpar" class="btn btn-sec" type="button">Limpar</button>
+              <button id="finalizar" class="btn" type="button">Finalizar pedido</button>
+            </div>
+          </aside>
+        </div>
+    
+        <section id="pedidos" aria-labelledby="t-pedidos">
+          <h2 id="t-pedidos">Pedidos realizados</h2>
+          <ul id="lista-pedidos" class="pedidos"></ul>
+        </section>
+      </main>
+
+  <!-- Formulário de produto (CREATE e UPDATE) -->
+  <dialog id="dlg" aria-labelledby="t-form">
+    <form id="form-produto" novalidate>
+      <h2 id="t-form">Produto</h2>
+      <input type="hidden" id="p-id">
+      <label for="p-nome">Nome</label><input id="p-nome" type="text">
+      <label for="p-desc">Descrição</label><input id="p-desc" type="text">
+      <label for="p-preco">Preço (R$)</label><input id="p-preco" type="text" inputmode="decimal" placeholder="0,00">
+      <label for="p-cat">Categoria</label>
+      <select id="p-cat"><option>Eletrônicos</option><option>Celular</option><option>Notebook</option><option>Utilidades</option></select>
+      <label for="p-img">URL da imagem (opcional)</label><input id="p-img" type="url">
+      <p id="erro-form" class="erro" role="alert"></p>
+      <div class="acoes">
+        <button type="button" id="cancelar" class="btn btn-sec">Cancelar</button>
+        <button type="submit" class="btn">Salvar</button>
+      </div>
+    </form>
+  </dialog>
+
+  <footer class="rodape"><div class="container"><p>© 2026 Volt Shop · Projeto didático</p></div></footer>
+
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js"></script>
+</body>
+</html>
